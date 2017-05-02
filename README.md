@@ -7,9 +7,9 @@ QUANTAXIS与国内很多优秀的量化平台的区别在于,QA更多关注的�
 ## 关键词: 局域网协作/开放式渐进框架/高度自定义
 
 
-![version](https://img.shields.io/badge/Version-%200.3.8-orange.svg)
+![version](https://img.shields.io/badge/Version-%200.3.9/dev/alpha-orange.svg)
 ![QAS](https://img.shields.io/badge/QAS-%200.0.5-brown.svg)
-![Pypi](https://img.shields.io/badge/Pypi-%200.3.8RC3-blue.svg)
+![Pypi](https://img.shields.io/badge/Pypi-%200.3.9/dev/alpha-blue.svg)
 ![python](https://img.shields.io/badge/python-%203.5/3.6/win/ubuntu-darkgrey.svg)
 ![Npm](https://img.shields.io/badge/Npm-%200.3.8-yellow.svg)
 ![author](https://img.shields.io/badge/Powered%20by-%20%20yutiansut-red.svg)
@@ -27,13 +27,19 @@ QUANTAXIS与国内很多优秀的量化平台的区别在于,QA更多关注的�
     - [关键词: 局域网协作/开放式渐进框架/高度自定义](#关键词-局域网协作开放式渐进框架高度自定义)
     - [说明文档 (Updating)](#说明文档-updating)
     - [QUANTAXIS-Stardand-Protocol](#quantaxis-stardand-protocol)
+    - [部署问题:](#部署问题)
+    - [回测Webkit插件概览](#回测webkit插件概览)
+        - [Web版](#web版)
+        - [Client版](#client版)
     - [适用场景](#适用场景)
+    - [todo list](#todo-list)
     - [Webkit大礼包](#webkit大礼包)
 
 <!-- /TOC -->
 
 ## 说明文档 (Updating)
 [地址](https://yutiansut.gitbooks.io/quantaxis/)
+![](http://i1.piimg.com/567571/dc3c811a5afcb4fb.png)
 ## QUANTAXIS-Stardand-Protocol
 QUANTAXIS 标准化协议和未来协议
 
@@ -41,16 +47,52 @@ QUANTAXIS-Stardand-Protocol 版本号0.0.5
 
 详情参见  [QUANATXISProtocol](https://github.com/yutiansut/QUANTAXIS/tree/0.3.8-dev-RC-ARP/QUANTAXISProtocol)
 
+## 部署问题:
 
+- Windows/Linux(ubuntu) 已测试通过
+- python3.6优先(开发环境)  python2系列要改个Queue的名字
+- nodejs 需要安装>7的版本,来支持es6语法
+- mongodb是必须要装的
+- Wind万得数据库  机构版/免费(大奖章版)
+
+一个简易demo(需要先安装并启动mongodb,python版本需要大于3)
+```shell
+git clone https://github.com/yutiansut/quantaxis
+cd quantaxis 
+(sudo) python setup.py install
+python easy_start_tushare.py(会存全市场的数据,较慢)
+python test_strategy.py(一个简单的策略)
+```
+启动网络插件(nodejs 版本号需要大于6,最好是7)
+```shell
+cd QUANTAXISWebkit
+(sudo) npm run install
+(sudo) npm run Xweb
+```
+会自动启动localhost:8080网页端口,用账户名admin,密码admin登录
+
+## 回测Webkit插件概览
+### Web版
+![](http://i2.muimg.com/567571/736ba4adda9fac85.png)
+
+![](http://i2.muimg.com/567571/5079341ad1461a91.png)
+![](http://i1.piimg.com/567571/09bd05c3698f2d38.png)
+![](http://i1.piimg.com/567571/053ac3e3850f8f60.png)
+### Client版
+![](http://i2.muimg.com/4851/25f8b959d5c6f794.png)
 ## 适用场景
 ![适用场景](http://i2.buimg.com/567571/e2e7b31b1f9a4307.png)
 
 
 
+## todo list
 
+- 基于RabbitMQ的消息队列,nodejs和python进程通信
+- 期货回测
+- Portfolio和Risk支持
 
 ## Webkit大礼包
 
-即将重构 #QAF03
+
 
 ![前后端分离](http://i1.piimg.com/567571/41fa8b9c16122bfd.png)
